@@ -7,7 +7,9 @@ wage: String,
 distance:String ,
 jpLevel:String ,
 createdAt:{type:Date , default:Date.now() } ,
-img: String
+img: String,
+longitude:Number,
+latitude:Number
 });
 
 mongoose.model('jobs',jobSchema);

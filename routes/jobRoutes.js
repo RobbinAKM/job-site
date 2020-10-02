@@ -5,13 +5,15 @@ const Job = mongoose.model('jobs');
 module.exports = app=>{
 
   app.post('/api/jobs', async(req,res)=>{
-    const {title, wage,distance,jpLevel, img }= req.body;
+    const {title, wage,distance,jpLevel, img , longitude, latitude }= req.body;
     const job = new Job({
       title,
       wage,
       distance,
       jpLevel,
-      img
+      img,
+      longitude,
+      latitude       
     });
     try{
       await job.save();

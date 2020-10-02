@@ -11,3 +11,7 @@ export const fetchJobs = () => async dispatch => {
 const res =await axios.get('/api/jobs');
 dispatch({type:FETCH_JOBS , payload:res.data});
 }
+
+export const fetchLocation = () => async dispatch => {
+
+}
