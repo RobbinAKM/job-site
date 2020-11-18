@@ -4,21 +4,13 @@ import {Link} from 'react-router-dom';
 import FormField from './FormField';
 import validateEmails from '../../utils/validateEmails';
 import _ from 'lodash';
+import fields from './fields';
 
 
-const FIELDS=[
-  {label:"name" ,name:"title", noValueError:"Please provide your first and last name"},
-  {label:"Japanese level" ,name:"jplevel" , noValueError:"Write Japanese level from N5~N1"},
-  {label:"Visa" ,name:"visa",noValueError:"What is your visa type?"},
-  {label:"Nearest Station" ,name:"sta ", noValueError:"Please tell us your nearest station"},
-  {label:"Email" ,name:"email",noValueError:"Email is empty or invalid"}
-];
 
 class Form extends Component{
-
-
   renderField(){
-    return _.map(FIELDS,({label ,name})=>{
+    return _.map(fields,({label ,name})=>{
       return <Field
       component={FormField}
       type='text'
@@ -30,7 +22,7 @@ class Form extends Component{
 
   render(){
     return(
-      <form onSubmit={this.props.handleSubmit(values=>console.log(values))}>
+      <form onSubmit={this.props.handleSubmit(this.props.onFormSubmit)}>
       {this.renderField()}
       <Link to="/" className="red btn-flat left white-text" >Cancel</Link>
       <button type='submit' className="teal btn-flat right white-text" >Submit</button>
@@ -43,7 +35,7 @@ class Form extends Component{
     const errors={};
 
     errors.email = validateEmails(values.email || '');
-    _.each(FIELDS,({name,noValueError})=>{
+    _.each(fields,({name,noValueError})=>{
       if(!values[name]){
         errors[name]=noValueError;
       }
@@ -53,5 +45,6 @@ class Form extends Component{
 
 export default reduxForm({
   validate,
-  form:'form'
+  form:'jobForm',
+  destroyOnUnmount: false
 })(Form);

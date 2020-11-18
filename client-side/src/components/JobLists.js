@@ -31,7 +31,7 @@ class JobLists extends Component{
           { latitude:job.latitude, longitude:job.longitude}
           );
       return(
-        <div className="col s12 m7">
+        <div className="col s12 m7" key={job.title}>
           <div className="card horizontal">
            <div className="card-image">
               <Img src={job.img} style={{display:"block",marginLeft:"auto",marginRight:"auto",width:"100%"}} />
