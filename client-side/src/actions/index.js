@@ -12,6 +12,8 @@ const res =await axios.get('/api/jobs');
 dispatch({type:FETCH_JOBS , payload:res.data});
 }
 
-export const submitForm = values =>{
-  return {type:'fetch_formdata'}
+export const submitForm = (values,history) => async dispatch => {
+  const res =await axios.post('/api/response',values);
+  history.push('/');
+  dispatch({type:FETCH_USER , payload:res.data});
 }

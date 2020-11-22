@@ -9,6 +9,7 @@ const passport = require('passport');
 const keys = require('./config/keys');
 require('./models/User');
 require('./models/Jobs');
+require('./models/Response');
 require('./services/passport');
 
 
@@ -29,6 +30,7 @@ app.use(passport.session());
 
 require('./routes/authRoutes')(app);
 require('./routes/jobRoutes')(app);
+require('./routes/responseRoutes')(app);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);

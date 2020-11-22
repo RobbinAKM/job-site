@@ -13,7 +13,7 @@ module.exports = app=>{
       jpLevel,
       img,
       longitude,
-      latitude       
+      latitude
     });
     try{
       await job.save();

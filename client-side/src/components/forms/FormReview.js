@@ -2,9 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux'
 import fields from './fields';
 import _ from 'lodash';
-import * as actions from '../../actions'
+import * as actions from '../../actions';
+import { withRouter } from "react-router";
 
-const FormReview= ({onCancel, formValues, submitForm})=>{
+const FormReview= ({onCancel, formValues, submitForm , history })=>{
 
   const reviewFields= _.map(fields,({label,name})=>
       {
@@ -24,7 +25,7 @@ const FormReview= ({onCancel, formValues, submitForm})=>{
       <button onClick={onCancel} className="yellow darken-3 btn-flat" > Back </button>
       <button
         className="green btn-flat right white-text"
-        onClick={()=>submitForm(formValues)}
+        onClick={()=>submitForm(formValues ,history)}
       >
         Send >>
       </button>
@@ -38,4 +39,4 @@ function mapStateToProps(state){
     formValues:state.form.jobForm.values
   };
 }
-export default connect(mapStateToProps,actions)(FormReview);
+export default connect(mapStateToProps,actions)(withRouter(FormReview));
